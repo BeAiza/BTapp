@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Transaction List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div class="container">
+  <h1>Transactions</h1>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transactions}">
+      <td th:text="${transaction.type}"></td>
+      <td th:text="${transaction.amount}"></td>
+      <td th:text="${transaction.description}"></td>
+      <td th:text="${transaction.category}"></td>
+      <td th:text="${transaction.date}"></td>
+      <td>
+        <a th:href="@{/transactions/{id}/edit(id=${transaction.id})}">Edit</a>
+        <form th:action="@{/transactions/{id}(id=${transaction.id})}" method="post" style="display:inline;">
+          <input type="hidden" name="_method" value="delete"/>
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/transactions/create">Create Transaction</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
