@@ -35,12 +35,12 @@ public class BudgetController {
         this.userId = userId;
     }
 
-    @GetMapping
-    public String list(Model model) {
+    @GetMapping("/list")
+    public String list(@RequestParam("search") String search, Model model) {
         //Receive users budgets and add them to model
         //Replace "userId" with actual user ID from auth
         Long userId = 1L;
-        List<Budget> budgets = budgetService.findAllBUserId(userId);
+        List<Budget> budgets = budgetService.findAllBUserId(userId, search);
         model.addAttribute("budgets", budgets);
 
         return "budget/list"; //Thymeleaf view
