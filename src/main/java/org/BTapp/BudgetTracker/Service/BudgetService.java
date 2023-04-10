@@ -16,12 +16,12 @@ public class BudgetService {
     @Autowired
     private BudgetRepository budgetRepository;
 
-    // Implement budget-related business logic methods here, e.g., create, update, delete, etc.
+    // Implement budget-related business logic methods here, e.g., create, update, delete
 
-
-    public List<Budget> findAllBUserId (Long userId, String search) {
+    public List<Budget> findAllBUserId(Long userId, String search) {
         return budgetRepository.findAllByUserId(userId, search);
     }
+
     public Optional<Budget> findById(Long id) {
         return budgetRepository.findById(id);
     }
@@ -34,3 +34,6 @@ public class BudgetService {
         budgetRepository.deleteById(id);
     }
 }
+
+
+

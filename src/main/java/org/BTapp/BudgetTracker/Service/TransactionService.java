@@ -17,10 +17,12 @@ public class TransactionService {
 
 // Implement transaction-related business logic methods here, e.g., create, update, delete, etc.
 
-    public List<Transaction> findAllByBudgetId(Long budgetId, String search) {
-        return transactionRepository.findAllByBudgetId(budgetId, search);
+    public List<Transaction> findAllByBudgetId(Long budgetId) {
+        return transactionRepository.findAllByBudgetId(budgetId);
     }
-
+    public List<Transaction> findAllByBudgetIdAndSearch(Long budgetId, String search) {
+        return transactionRepository.findAllByBudgetIdAndSearch(budgetId, search);
+    }
     public Optional<Transaction> findById(Long id) {
         return transactionRepository.findById(id);
     }

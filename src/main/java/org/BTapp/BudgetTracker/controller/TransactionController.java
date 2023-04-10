@@ -25,12 +25,14 @@ public class TransactionController {
     public void setBudgetId(Long budgetId) {
         this.budgetId = budgetId;
     }
+
+
     @GetMapping("/list")
     public String list(@RequestParam("search") String search, Model model) {
         //retrieve the transaction for a specific budget and add to the model
         //replace "budgetId" with actual budget ID from request
         Long budgetId = 1L;
-        List<Transaction> transactions = transactionService.findAllByBudgetId(budgetId, search);
+        List<Transaction> transactions = transactionService.findAllByBudgetIdAndSearch(budgetId, search);
         model.addAttribute("transactions", transactions);
 
         return "transactions/list";

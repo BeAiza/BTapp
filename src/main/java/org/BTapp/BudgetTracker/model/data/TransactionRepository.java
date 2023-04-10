@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    @Query
-    List<Transaction> findAllByBudgetId(Long budgetId, String search);
+
+    List<Transaction> findAllByBudgetId(Long budgetId);
     //interfaces with custom search queries.
-
-
+    @Query
+    List<Transaction> findAllByBudgetIdAndSearch(Long budgetId, String search);
 }
+
+
