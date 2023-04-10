@@ -10,7 +10,7 @@ import java.util.List;
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
     //interfaces with custom search queries.
-    @Query
+    @Query("SELECT b FROM Budget b WHERE b.user.id = :userId AND (b.name LIKE %:search% OR :search IS NULL OR :search = '')")
     List<Budget> findAllByUserId(Long userId, String search);
 
 
