@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -20,18 +19,18 @@ public class UserController {
     private UserRepository userRepository;
 
 
-    @GetMapping("/user/login")
+    @GetMapping(value = "/login")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/user/register")
+    @GetMapping(value = "/user/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
-    @PostMapping("/user/register")
+    @PostMapping(value = "/user/register")
     public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         User existingUser = userRepository.findByUsername(user.getUsername());
         if (existingUser != null) {
