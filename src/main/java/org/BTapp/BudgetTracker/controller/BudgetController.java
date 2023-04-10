@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/budgets")
+@RequestMapping(value = "/budgets")
 public class BudgetController {
 
 
@@ -35,7 +35,7 @@ public class BudgetController {
         this.userId = userId;
     }
 
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public String list(@RequestParam("search") String search, Model model) {
         //Receive users budgets and add them to model
         //Replace "userId" with actual user ID from auth
@@ -46,7 +46,7 @@ public class BudgetController {
         return "budget/list"; //Thymeleaf view
     }
 
-    @GetMapping("/create")
+    @GetMapping(value = "/create")
     public String createForm(Model model) {
         model.addAttribute("budget", new Budget());
         return "budget/create";
@@ -63,14 +63,14 @@ public class BudgetController {
         return "redirect/budgets";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping(value = "/{id}/edit")
     public String editForm(@PathVariable Long id, Model model) {
         Optional<Budget> budget = budgetService.findById(id);
         budget.ifPresent(value -> model.addAttribute("budget", value));
         return "budget/edit"; // Thymeleaf view for budget editing
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public String update(@PathVariable Long id, @ModelAttribute Budget budget) {
         budgetService.save(budget);
         return "redirect/budgets";

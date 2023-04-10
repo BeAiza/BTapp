@@ -23,6 +23,12 @@ public class UserController {
     public String login() {
         return "login";
     }
+    @PostMapping(value = "/user/login")
+    public String processLogin() {
+        // You should add proper authentication logic here
+        // If the login is successful, redirect the user to the budget list page
+        return "redirect:/budget/list";
+    }
 
     @GetMapping(value = "/user/register")
     public String register(Model model) {
