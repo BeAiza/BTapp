@@ -1,5 +1,7 @@
 package org.BTapp.BudgetTracker.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.BTapp.BudgetTracker.Service.BudgetService;
 import org.BTapp.BudgetTracker.Service.UserService;
 import org.BTapp.BudgetTracker.model.Budget;
@@ -38,8 +40,10 @@ public class BudgetController {
     @GetMapping(value = "/list")
     public String list(@RequestParam("search") String search, Model model) {
         //Receive users budgets and add them to model
-        //Replace "userId" with actual user ID from auth
-        Long userId = 1L;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+        Long userId = currentUser.getId();
+
         List<Budget> budgets = budgetService.findAllBUserId(userId, search);
         model.addAttribute("budgets", budgets);
 
