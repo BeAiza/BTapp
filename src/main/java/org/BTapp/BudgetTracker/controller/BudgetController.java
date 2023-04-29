@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/budgets")
+@RequestMapping(value = "/budgets", method = RequestMethod.GET)
 public class BudgetController {
 
 
