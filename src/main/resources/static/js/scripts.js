@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
     // Login button click event handler
     $("#loginButton").on("click", function() {
         alert("Login button clicked!");
