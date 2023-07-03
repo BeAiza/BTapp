@@ -15,6 +15,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Budget> budgets;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles;
+
     public User() {
     }
 
@@ -43,5 +46,19 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
+    public Set<Budget> getBudgets() {
+        return budgets;
+    }
 
+    public void setBudgets(Set<Budget> budgets) {
+        this.budgets = budgets;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 }

@@ -18,8 +18,9 @@ import java.util.Optional;
 @RequestMapping(value = "/budgets", method = RequestMethod.GET)
 public class BudgetController {
 
-
+    @Autowired
     private final BudgetService budgetService;
+    @Autowired
     private final UserService userService;
 
 

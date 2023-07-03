@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
-@RequestMapping
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping(value = "/login")
     public String login() {
         return "login";
-    }
+    } 
     @PostMapping(value = "/user/login")
     public String processLogin() {
         // You should add proper authentication logic here
