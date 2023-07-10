@@ -51,7 +51,7 @@ public class BudgetController {
         return "budget/list"; //Thymeleaf view
     }
 
-    @GetMapping(value = "/create")
+    @GetMapping(value = "/registration")
     public String createForm(Model model) {
         model.addAttribute("budget", new Budget());
         return "budget/create";

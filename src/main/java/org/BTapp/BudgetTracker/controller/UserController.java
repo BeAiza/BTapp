@@ -4,13 +4,16 @@ import org.BTapp.BudgetTracker.Service.UserService;
 import org.BTapp.BudgetTracker.model.User;
 import org.BTapp.BudgetTracker.model.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
 
     @Autowired
@@ -18,6 +21,13 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public List<User> getAllUsers() {
+        // Return a list of users
+        return userService.findAll();
+    }
 
 
     @GetMapping(value = "/login")
